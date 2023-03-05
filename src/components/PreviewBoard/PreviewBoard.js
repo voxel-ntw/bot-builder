@@ -110,9 +110,10 @@ const LayoutFlow = forwardRef(({ layout, code }, ref) => {
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             connectionLineType={ConnectionLineType.SmoothStep}
+            proOptions={{ hideAttribution: true }}
             fitView
           />
-          <Background style={{ background: "#011627" }} color="#f97448" />
+          <Background style={{ background: "#011627" }} color="#011627" />
         </ReactFlowProvider>
       </div>
     </div>
