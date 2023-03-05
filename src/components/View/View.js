@@ -1,5 +1,9 @@
-import React, { useState , createRef , useRef , useEffect } from "react";
-import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
+import React, { useState, createRef, useRef, useEffect } from "react";
+import {
+  exportComponentAsJPEG,
+  exportComponentAsPDF,
+  exportComponentAsPNG,
+} from "react-component-export-image";
 import { WarningCircle } from "phosphor-react";
 
 //components
@@ -9,10 +13,10 @@ import CodeEditor from "../CodeEditor/CodeEditor";
 //stylesheet
 import styles from "./View.module.scss";
 
-const View = ({ layout, code, setCode , downloadCount }) => {
+const View = ({ layout, code, setCode, downloadCount }) => {
   const [activeTab, setActiveTab] = useState("preview-board");
-  const [isJson , setIsJson] = useState(false)
-  const diagramRef = useRef()
+  const [isJson, setIsJson] = useState(false);
+  const diagramRef = useRef();
 
   const isJSONString = (str) => {
     try {
@@ -20,21 +24,20 @@ const View = ({ layout, code, setCode , downloadCount }) => {
     } catch (e) {
       return false;
     }
-    console.log("called")
+    console.log("called");
     return true;
   };
 
   useEffect(() => {
-    setIsJson(isJSONString(code))
-  }, [code])
+    setIsJson(isJSONString(code));
+  }, [code]);
 
   useEffect(() => {
-   if(downloadCount > 0){
-      exportComponentAsPNG(diagramRef)
-   }
-  }, [downloadCount])
-  
-  
+    if (downloadCount > 0) {
+      exportComponentAsPNG(diagramRef);
+    }
+  }, [downloadCount]);
+
   return (
     <div className={styles.view}>
       <div className={styles.view__tabControls}>
@@ -46,7 +49,12 @@ const View = ({ layout, code, setCode , downloadCount }) => {
           }
           onClick={() => setActiveTab("code-editor")}
         >
-          Code Editor {isJson ? null :  <span><WarningCircle size={14} weight="bold" color={'tomato'} /></span>}
+          Code Editor{" "}
+          {isJson ? null : (
+            <span>
+              <WarningCircle size={14} weight="bold" color={"tomato"} />
+            </span>
+          )}
         </div>
         <div
           className={
@@ -56,14 +64,13 @@ const View = ({ layout, code, setCode , downloadCount }) => {
           }
           onClick={() => isJson && setActiveTab("preview-board")}
         >
-          Preview Board
+          Bot Preview
         </div>
-       
       </div>
       {activeTab === "code-editor" ? (
-        <CodeEditor  setCode={setCode} code={code} />
+        <CodeEditor setCode={setCode} code={code} />
       ) : (
-        <PreviewBoard  ref={diagramRef}  code={code} layout={layout} />
+        <PreviewBoard ref={diagramRef} code={code} layout={layout} />
       )}
     </div>
   );

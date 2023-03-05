@@ -1,4 +1,4 @@
-import React, { useCallback, forwardRef , useEffect } from "react";
+import React, { useCallback, forwardRef, useEffect } from "react";
 import ReactFlow, {
   addEdge,
   ConnectionLineType,
@@ -15,7 +15,9 @@ import Nodes from "./nodes";
 import "./index.css";
 
 const LayoutFlow = forwardRef(({ layout, code }, ref) => {
-  const nodeInstance = new Nodes(typeof code === "string" ? JSON.parse(code) : {});
+  const nodeInstance = new Nodes(
+    typeof code === "string" ? JSON.parse(code) : {}
+  );
 
   const [newNodes, newEdges] = nodeInstance.getNodes();
 
@@ -24,8 +26,6 @@ const LayoutFlow = forwardRef(({ layout, code }, ref) => {
 
   const nodeWidth = 272;
   const nodeHeight = 76;
-
-  
 
   const getLayoutedElements = (nodes, edges, direction = "TB") => {
     const isHorizontal = direction === "LR";
@@ -52,8 +52,6 @@ const LayoutFlow = forwardRef(({ layout, code }, ref) => {
         x: nodeWithPosition.x - nodeWidth / 2,
         y: nodeWithPosition.y - nodeHeight / 2,
       };
-
-      
 
       return node;
     });
@@ -90,19 +88,16 @@ const LayoutFlow = forwardRef(({ layout, code }, ref) => {
     [nodes, edges]
   );
 
-  
-
   useEffect(() => {
     if (layout) {
       onLayout(layout);
       console.log("called ", layout);
     }
-    
   }, [layout]);
 
   return (
     <div
-    ref={ref}
+      ref={ref}
       style={{ width: "100%", height: "calc(100% - 30px)" }}
       className="layoutflow"
     >

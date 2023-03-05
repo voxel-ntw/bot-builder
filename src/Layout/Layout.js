@@ -8,31 +8,27 @@ const Layout = ({ children }) => {
   const [layout, setLayout] = useState("LR");
   const [downloadCount, setDownloadCount] = useState(0);
   const [code, setCode] = useState(`
- {
-    "name": "json-preview",
-    "version": "0.1.0",
+  {
+    "name": "basic-bot",
+    "version": "0.3.9",
     "private": true,
-  
-    "scripts": {
-      "start": "react-scripts start",
-      "build": "react-scripts build",
-      "test": "react-scripts test",
-      "eject": "react-scripts eject"
-    },
-   
-    "browserslist": {
-
-      "production": [
-        ">0.2%",
-        "not dead",
-        "not op_mini all"
-      ]
-     
-    }
-  }
-  
-  
-  `);
+    "nodes": [
+      {
+        "Find in collection": [
+          {
+            "If-else": [
+              {
+                "name": "Mention user"
+              },
+              {
+                "name": "Balance"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }`);
 
   return (
     <div className={styles.layout}>
