@@ -112,7 +112,6 @@ const LayoutFlow = forwardRef(({ layout, code }, ref) => {
             connectionLineType={ConnectionLineType.SmoothStep}
             fitView
           />
-          <Controls />
           <Background style={{ background: "#011627" }} color="#f97448" />
         </ReactFlowProvider>
       </div>
